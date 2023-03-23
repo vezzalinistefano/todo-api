@@ -1,15 +1,15 @@
 package controller
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/vezzalinistefano/todo-api/models"
+	"github.com/vezzalinistefano/todo-api/domain/entities"
+	"github.com/vezzalinistefano/todo-api/domain/models"
 )
 
 type CreateTodoController struct{
-    ToDoRepository models.ToDoRepository
+    CreateTodoService models.CreateToDoService
 }
 
 func (tc *CreateTodoController) CreateTodo(c *gin.Context) {
@@ -21,14 +21,14 @@ func (tc *CreateTodoController) CreateTodo(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, err.Error())
 	}
 
-	newTodo := models.ToDo{
+	newTodo := entities.ToDo{
 		ID:          1,
 		Title:       request.Title,
 		Description: request.Description,
 		Done:        false,
 	}
 
-    tc.ToDoRepository.Create(c, &newTodo)
+    _ = tc.CreateTodoService.Create(c, &newTodo)
 
-    log.Print("Correctly inserted todo with title: ", newTodo.Title)
+    c.JSON(http.StatusOK, newTodo.Title)
 }

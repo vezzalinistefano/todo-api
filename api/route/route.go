@@ -1,9 +1,13 @@
 package route
 
-import "github.com/gin-gonic/gin"
+import (
+	"time"
 
-func Setup(gin *gin.Engine) {
+	"github.com/gin-gonic/gin"
+)
+
+func Setup(gin *gin.Engine, timeout time.Duration) {
     publicRouter := gin.Group("api/")
 
-    NewCreateToDoRouter(publicRouter)
+    NewCreateToDoRouter(publicRouter, timeout)
 }
