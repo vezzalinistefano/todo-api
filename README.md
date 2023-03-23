@@ -1,6 +1,6 @@
 # TODO RestFul API
 
-I made ChatGPT generate me a project idea to learn golang, here is what i was given:
+I asked ChatGPT to generate a project idea to help me learn Golang, and here is the result:
 
 >Build a RESTful API server that handles CRUD operations for a simple data model.
 >
